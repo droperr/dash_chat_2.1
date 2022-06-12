@@ -51,15 +51,17 @@ class DashChat extends StatelessWidget {
     return Column(
       children: <Widget>[
         Expanded(
-          child: MessageList(
-            currentUser: currentUser,
-            messages: messages,
-            messageOptions: messageOptions,
-            messageListOptions: messageListOptions,
-            quickReplyOptions: quickReplyOptions,
-            scrollToBottomOptions: scrollToBottomOptions,
-            typingUsers: typingUsers,
-          ),
+          child: messages.isEmpty
+              ? messageListOptions.emptyMessageBuilder
+              : MessageList(
+                  currentUser: currentUser,
+                  messages: messages,
+                  messageOptions: messageOptions,
+                  messageListOptions: messageListOptions,
+                  quickReplyOptions: quickReplyOptions,
+                  scrollToBottomOptions: scrollToBottomOptions,
+                  typingUsers: typingUsers,
+                ),
         ),
         if (!readOnly)
           InputToolbar(
