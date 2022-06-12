@@ -6,6 +6,7 @@ class ChatMedia {
     required this.url,
     required this.fileName,
     required this.type,
+    this.metadata,
     this.isUploading = false,
     this.uploadedDate,
     this.customProperties,
@@ -15,6 +16,7 @@ class ChatMedia {
   factory ChatMedia.fromJson(Map<String, dynamic> jsonData) {
     return ChatMedia(
       url: jsonData['url'].toString(),
+      metadata: Metadata.fromJson(jsonData['metadata'] as Map<String, dynamic>),
       fileName: jsonData['fileName'].toString(),
       type: MediaType.parse(jsonData['type'].toString()),
       isUploading: jsonData['isUploading'] == true,
@@ -34,6 +36,9 @@ class ChatMedia {
   /// Type of media
   MediaType type;
 
+  /// Media metadata
+  Metadata? metadata;
+
   /// If the media is still uploading, usefull to add a visual feedback
   bool isUploading;
 
@@ -51,9 +56,30 @@ class ChatMedia {
       'url': url,
       'type': type.toString(),
       'fileName': fileName,
+      'metadata': metadata?.toJson(),
       'isUploading': isUploading,
       'uploadedDate': uploadedDate?.toUtc().toIso8601String(),
       'customProperties': customProperties,
+    };
+  }
+}
+
+class Metadata {
+  Metadata({
+    this.thumbnail,
+  });
+
+  factory Metadata.fromJson(Map<String, dynamic> map) {
+    return Metadata(
+      thumbnail: map['thumbnail'] != null ? map['thumbnail'].toString() : '',
+    );
+  }
+
+  String? thumbnail;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'thumbnail': thumbnail,
     };
   }
 }
