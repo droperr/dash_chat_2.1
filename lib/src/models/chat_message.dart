@@ -9,7 +9,7 @@ class ChatMessage {
     this.text = '',
     this.medias,
     this.quickReplies,
-    this.customProperties,
+    this.customProperties = const <String, dynamic>{},
     this.mentions,
     this.status = MessageStatus.none,
     this.replyTo,

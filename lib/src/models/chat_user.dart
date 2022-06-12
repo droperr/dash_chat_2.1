@@ -5,7 +5,7 @@ class ChatUser {
   ChatUser({
     required this.id,
     this.profileImage,
-    this.customProperties,
+    this.customProperties = const <String, dynamic>{},
     this.firstName,
     this.lastName,
   });

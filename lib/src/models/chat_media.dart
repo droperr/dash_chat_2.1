@@ -9,7 +9,7 @@ class ChatMedia {
     this.metadata,
     this.isUploading = false,
     this.uploadedDate,
-    this.customProperties,
+    this.customProperties = const <String, dynamic>{},
   });
 
   /// Create a ChatMedia instance from json data
