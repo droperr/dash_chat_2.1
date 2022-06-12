@@ -34,7 +34,9 @@ class ChatMessage {
                   QuickReply.fromJson(quickReply as Map<String, dynamic>))
               .toList()
           : <QuickReply>[],
-      customProperties: jsonData['customProperties'] as Map<String, dynamic>,
+      customProperties: jsonData['customProperties'] != null
+          ? jsonData['customProperties'] as Map<String, dynamic>
+          : null,
       mentions: jsonData['mentions'] != null
           ? (jsonData['mentions'] as List<dynamic>)
               .map((dynamic mention) =>
