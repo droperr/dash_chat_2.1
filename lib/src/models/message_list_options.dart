@@ -6,7 +6,6 @@ class MessageListOptions {
     this.showDateSeparator = true,
     this.dateSeparatorFormat,
     this.dateSeparatorBuilder,
-    this.emptyMessageBuilder = const Center(),
     this.separatorFrequency = SeparatorFrequency.days,
     this.scrollController,
     this.chatFooterBuilder,
@@ -49,9 +48,6 @@ class MessageListOptions {
 
   /// Builder to create your own typing widget
   final Widget Function(ChatUser user)? typingBuilder;
-
-  /// Builder to create your own typing widget
-  final Widget emptyMessageBuilder;
 }
 
 enum SeparatorFrequency { days, hours }

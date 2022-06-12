@@ -6,6 +6,7 @@ class DashChat extends StatelessWidget {
     required this.currentUser,
     required this.onSend,
     required this.messages,
+    this.emptyMessageBuilder = const Center(),
     this.inputOptions = const InputOptions(),
     this.messageOptions = const MessageOptions(),
     this.messageListOptions = const MessageListOptions(),
@@ -46,13 +47,16 @@ class DashChat extends StatelessWidget {
   /// List of users currently typing in the chat
   final List<ChatUser>? typingUsers;
 
+  /// Builder to create your own typing widget
+  final Widget emptyMessageBuilder;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Expanded(
           child: messages.isEmpty
-              ? messageListOptions.emptyMessageBuilder
+              ? emptyMessageBuilder
               : MessageList(
                   currentUser: currentUser,
                   messages: messages,
