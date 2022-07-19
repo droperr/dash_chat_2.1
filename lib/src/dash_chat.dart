@@ -6,6 +6,7 @@ class DashChat extends StatelessWidget {
     required this.currentUser,
     required this.onSend,
     required this.messages,
+    this.toolbarBuilder,
     this.emptyMessageBuilder = const Center(),
     this.inputOptions = const InputOptions(),
     this.messageOptions = const MessageOptions(),
@@ -25,6 +26,8 @@ class DashChat extends StatelessWidget {
 
   /// List of messages visible in the chat
   final List<ChatMessage> messages;
+
+  final Widget Function()? toolbarBuilder;
 
   /// Options to customize the behaviour and design of the chat input
   final InputOptions inputOptions;
@@ -68,11 +71,17 @@ class DashChat extends StatelessWidget {
                 ),
         ),
         if (!readOnly)
-          InputToolbar(
-            inputOptions: inputOptions,
-            currentUser: currentUser,
-            onSend: onSend,
-          ),
+          // ignore: always_specify_types
+          {
+            if (toolbarBuilder != null)
+              {toolbarBuilder!()}
+            else
+              InputToolbar(
+                inputOptions: inputOptions,
+                currentUser: currentUser,
+                onSend: onSend,
+              ),
+          }
       ],
     );
   }
