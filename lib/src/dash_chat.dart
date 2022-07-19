@@ -71,19 +71,16 @@ class DashChat extends StatelessWidget {
                   typingUsers: typingUsers,
                 ),
         ),
-        if (!readOnly)
-          // ignore: always_specify_types
-          {
-            if (toolbarBuilder != null)
-              // ignore: always_specify_types
-              {toolbarBuilder}
-            else
-              InputToolbar(
-                inputOptions: inputOptions,
-                currentUser: currentUser,
-                onSend: onSend,
-              ),
-          }
+
+        if (!readOnly && toolbarBuilder == null)
+          InputToolbar(
+            inputOptions: inputOptions,
+            currentUser: currentUser,
+            onSend: onSend,
+          )
+        else
+          toolbarBuilder
+        // ignore: always_specify_types
       ],
     );
   }
