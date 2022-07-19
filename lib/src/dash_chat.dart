@@ -79,7 +79,7 @@ class DashChat extends StatelessWidget {
             onSend: onSend,
           )
         else
-          toolbarBuilder
+          toolbarBuilder!
         // ignore: always_specify_types
       ],
     );
