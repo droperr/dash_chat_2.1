@@ -27,9 +27,6 @@ class DashChat extends StatelessWidget {
   /// List of messages visible in the chat
   final List<ChatMessage> messages;
 
-  /// Builder to create custom toolbar
-  final Widget toolbarBuilder;
-
   /// Options to customize the behaviour and design of the chat input
   final InputOptions inputOptions;
 
@@ -51,8 +48,11 @@ class DashChat extends StatelessWidget {
   /// List of users currently typing in the chat
   final List<ChatUser>? typingUsers;
 
-  /// Builder to create the empty chat display
+  /// Builder to create an empty chat display
   final Widget emptyMessageBuilder;
+
+  /// Builder to create your own custom toolbar
+  final Widget? toolbarBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,17 @@ class DashChat extends StatelessWidget {
         ),
         if (!readOnly)
           // ignore: always_specify_types
-          {toolbarBuilder}
+          {
+            if (toolbarBuilder != null)
+              // ignore: always_specify_types
+              {toolbarBuilder}
+            else
+              InputToolbar(
+                inputOptions: inputOptions,
+                currentUser: currentUser,
+                onSend: onSend,
+              ),
+          }
       ],
     );
   }
